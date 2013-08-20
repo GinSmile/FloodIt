@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">魔法色块</string>
+    <string name="score_label">高分榜</string>
+    <string name="start_label">新游戏</string>
+    <string name="exit_label">退出游戏</string>
+    <string name="about_label">游戏帮助</string>
+    <string name="about_title">关于  魔法色块</string>
+    <string name="about_text">游戏玩法：\n\n\n按下屏幕下方的颜色按钮，左上角的色块就会变颜色。只要把整片色块变成同色就赢了。\n\n什么，还不懂规则，那就直接玩游戏吧!玩两把就会了  o(∩_∩)o \n\n   还等什么，试试吧！
+        \n\n\n
+        Version  1.3\n
+        Author   John Xu\n
+        Weibo    @码农同学\n
+        </string>
+    <string name="settings_title">设置</string>
+    <string name="music_title">音乐</string>
+    <string name="music_summary">打开背景音乐</string>
+    <string name="time_title">计时</string>
+    <string name="time_summary">显示游戏时间</string>
+    <string name="author">关于作者</string>
+    
+    <string name="start_title">选择难度</string>
+    <string name="easy_model">小菜一碟</string>
+    <string name="medium_model">十拿九稳</string>
+    <string name="hard_model">涉险过关</string>
+
+</resources>

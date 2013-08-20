@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="difficulty">
+        <item>@string/easy_model</item> 
+        <item>@string/medium_model</item> 
+        <item>@string/hard_model</item>  
+     </array>     
+</resources>

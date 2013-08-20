@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical"
+    android:padding="30dip"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="1.0"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:paddingBottom="30dp"
+            android:src="@drawable/app_name" />
+   
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:background="@android:drawable/btn_default"
+        android:text="@string/start_label"
+        android:textColor="@color/dark" />
+    
+     <Button
+         android:id="@+id/score_button"
+         android:layout_width="150dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dip"
+         android:alpha="0.7"
+         android:background="@android:drawable/btn_default"
+         android:text="@string/score_label"
+         android:textColor="@color/dark" />
+     
+    
+    
+    <Button
+        android:id="@+id/about_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:alpha="0.7"
+        android:background="@android:drawable/btn_default"
+        android:text="@string/about_label"
+        android:textColor="@color/dark" />
+    
+    <Button
+        android:id="@+id/exit_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:alpha="0.7"
+        android:background="@android:drawable/btn_default"
+        android:text="@string/exit_label"
+        android:textColor="@color/dark" />
+
+    </LinearLayout>
+    
+</LinearLayout>
