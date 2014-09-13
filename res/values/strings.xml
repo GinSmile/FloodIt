@@ -24,5 +24,7 @@
     <string name="easy_model">小菜一碟</string>
     <string name="medium_model">十拿九稳</string>
     <string name="hard_model">涉险过关</string>
+    
+    <string name="back">&#8656;</string>
 
 </resources>

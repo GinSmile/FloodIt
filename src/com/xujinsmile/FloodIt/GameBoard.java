@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,6 +64,7 @@ public class GameBoard extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				initTheTable();
+				
 			}
 			
 		});
@@ -94,12 +97,17 @@ public class GameBoard extends Activity{
 		LinearLayout linear = (LinearLayout)findViewById(R.id.linearLayout1);		
 		Button[] btns =  new Button[6];
 		
+		Animation animation = AnimationUtils.loadAnimation(GameBoard.this, R.anim.welcome_anime);
+		
+		
 		for(int i = 0; i < 6; i++){
 			btns[i] = new Button(this);
 			linear.addView(btns[i]);
 			TextView spaceText = new TextView(this);
 			spaceText.setText(" ");
 			linear.addView(spaceText);
+			
+			btns[i].startAnimation(animation);
 			
 		}
 		

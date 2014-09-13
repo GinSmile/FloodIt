@@ -11,5 +11,14 @@
     <color name="color3">#8D4BBB</color>
     <color name="color4">#A3D900</color>
     <color name="color5">#4B5CC4</color>
+
+    <color name="main_color">#f26522</color>
+    <color name="white">#FFFFFF</color>
+    <color name="play">#33a3dc</color>
+    <color name="grey">#d3d7d4</color>
+    <color name="ink">#464547</color>
+    <color name="chase">#905a3d</color>
+    
+
     
 </resources>
