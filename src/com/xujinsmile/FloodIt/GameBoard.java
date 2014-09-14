@@ -2,14 +2,11 @@ package com.xujinsmile.FloodIt;
 
 import java.util.Random;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +35,22 @@ public class GameBoard extends Activity{
 		pre = MainActivity.getSharedPreferences();
 		editor = MainActivity.getSharedPreferencesEditor();
 		
+		
+		//返回按钮设置
+		TextView back_btn = (TextView)findViewById(R.id.back_to_startmenu);
+		back_btn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(GameBoard.this, ChooseLevel.class);
+	            startActivity(intent);
+	            GameBoard.this.finish();
+	        	
+			}
+			
+		});
+		
 		//第一次进入显示一个帮助信息
 		int first = Integer.parseInt(pre.getString("first", "1"));
 		if(first == 1){
@@ -58,12 +71,16 @@ public class GameBoard extends Activity{
 		}
 		
 		Button refresh = (Button)findViewById(R.id.refresh);
+		final View ref = refresh;
 		refresh.setOnClickListener(new OnClickListener(){
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				initTheTable();
+				Animation animRefresh = AnimationUtils.loadAnimation(GameBoard.this, R.anim.press_anime);
+				
+				ref.startAnimation(animRefresh);
 				
 			}
 			
@@ -89,17 +106,12 @@ public class GameBoard extends Activity{
 	}
 	
 	
-
+	//初始化Button
 	public void initButton(){
-		@SuppressWarnings("deprecation")
 		int screenWidth = this.getWindowManager().getDefaultDisplay().getWidth();
-		//初始化Button
+
 		LinearLayout linear = (LinearLayout)findViewById(R.id.linearLayout1);		
 		Button[] btns =  new Button[6];
-		
-		Animation animation = AnimationUtils.loadAnimation(GameBoard.this, R.anim.welcome_anime);
-		
-		
 		for(int i = 0; i < 6; i++){
 			btns[i] = new Button(this);
 			linear.addView(btns[i]);
@@ -107,7 +119,7 @@ public class GameBoard extends Activity{
 			spaceText.setText(" ");
 			linear.addView(spaceText);
 			
-			btns[i].startAnimation(animation);
+	
 			
 		}
 		
@@ -120,11 +132,20 @@ public class GameBoard extends Activity{
 			//注意，getColor和colors[i]很不一样
 			final int currentColor = i;
 			
+			final View tmpBut = btns[i];
+			
 			btns[i].setOnClickListener(new OnClickListener(){
-				
+				//点击按钮的动画
+				//Animation animPress = AnimationUtils.loadAnimation(GameBoard.this, R.anim.press_anime);
+
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
+					// TODO Auto-generated method stud
+					
+					Animation animPress = AnimationUtils.loadAnimation(GameBoard.this, R.anim.press_anime);
+					tmpBut.startAnimation(animPress);
+
+					
 					changeColor(getResources().getColor(colors[currentColor]));
 					
 					if(isFinish()){
@@ -136,7 +157,8 @@ public class GameBoard extends Activity{
 						showLoseDialog();
 					}
 				}
-				
+
+
 			});
 		}
 	}
@@ -152,18 +174,22 @@ public class GameBoard extends Activity{
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				// TODO Auto-generated method stub
-				colorTheTable();
+				initTheTable();
 				step = 0;
 				
 			}
 			
 		});
-		builderLose.setNegativeButton( "回主菜单",  new DialogInterface.OnClickListener(){
+		builderLose.setNegativeButton( "更改难度",  new DialogInterface.OnClickListener(){
 
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				// TODO Auto-generated method stub
+				//GameBoard.this.finish();
+				Intent intent = new Intent(GameBoard.this, ChooseLevel.class);
+				startActivity(intent);
 				GameBoard.this.finish();
+				//overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
 			}
 			
 		});
@@ -224,12 +250,15 @@ public class GameBoard extends Activity{
 			}
 			
 		});
-		builder.setNegativeButton( "回主菜单",  new DialogInterface.OnClickListener(){
+		builder.setNegativeButton( "更改难度",  new DialogInterface.OnClickListener(){
 
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				// TODO Auto-generated method stub
+				Intent intent = new Intent(GameBoard.this, ChooseLevel.class);
+				startActivity(intent);
 				GameBoard.this.finish();
+				//overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
 			}
 			
 		});
@@ -362,7 +391,6 @@ public class GameBoard extends Activity{
 		table = (TableLayout)findViewById(R.id.tablelayout);
 		TableRow[] tableRows = new TableRow[WIDTH];
 		texts = new MyTextView[WIDTH][WIDTH];
-		@SuppressWarnings("deprecation")
 		int screenWidth = this.getWindowManager().getDefaultDisplay().getWidth();
 		
 		

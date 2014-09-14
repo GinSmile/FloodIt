@@ -1,9 +1,12 @@
 package com.xujinsmile.FloodIt;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 import com.xujinsmile.FloodIt.R;
 
@@ -15,6 +18,21 @@ public class HighScore extends Activity{
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.high_score);
+		
+		TextView back_btn = (TextView)findViewById(R.id.back_to_startmenu);
+		back_btn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(HighScore.this, MainActivity.class);
+	            startActivity(intent);
+	            HighScore.this.finish();
+	        	
+			}
+			
+		});
+
 		
 		TextView scoreTable = (TextView)findViewById(R.id.highScore);	
 		
