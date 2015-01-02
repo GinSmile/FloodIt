@@ -46,6 +46,27 @@ public class GameBoard extends Activity{
 				Intent intent = new Intent(GameBoard.this, ChooseLevel.class);
 	            startActivity(intent);
 	            GameBoard.this.finish();
+	            overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+
+	        	
+			}
+			
+		});
+		
+		//帮助按钮设置
+		TextView help = (TextView)findViewById(R.id.help);
+		final TextView helpTmp = help; 
+		help.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(GameBoard.this, About.class);
+				startActivity(i);
+				Animation animRefresh = AnimationUtils.loadAnimation(GameBoard.this, R.anim.press_anime);
+				helpTmp.startAnimation(animRefresh);
+	            
+
 	        	
 			}
 			
@@ -55,7 +76,7 @@ public class GameBoard extends Activity{
 		int first = Integer.parseInt(pre.getString("first", "1"));
 		if(first == 1){
 			//第一次
-			Toast toast = Toast.makeText(GameBoard.this,"点击屏幕下方的大色块试试 :-)", 
+			Toast toast = Toast.makeText(GameBoard.this,"点击屏幕下方的大色块试试 :-)，注意左上角的颜色变化哦～", 
 	    			Toast.LENGTH_LONG);
 			View toastView = toast.getView();
 			ImageView image = new ImageView(GameBoard.this);
@@ -70,6 +91,7 @@ public class GameBoard extends Activity{
 			editor.commit();
 		}
 		
+		//刷新按钮设置
 		Button refresh = (Button)findViewById(R.id.refresh);
 		final View ref = refresh;
 		refresh.setOnClickListener(new OnClickListener(){
@@ -77,9 +99,9 @@ public class GameBoard extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				initTheTable();
+				//initTheTable();
 				Animation animRefresh = AnimationUtils.loadAnimation(GameBoard.this, R.anim.press_anime);
-				
+				initTheTable();
 				ref.startAnimation(animRefresh);
 				
 			}
@@ -163,6 +185,7 @@ public class GameBoard extends Activity{
 		}
 	}
 	
+	//弹出失败对话框
 	public void showLoseDialog(){
 		//弹出个Dialog						
 		AlertDialog.Builder builderLose = new AlertDialog.Builder(GameBoard.this);
@@ -197,6 +220,7 @@ public class GameBoard extends Activity{
 		builderLose.create().show();
 	}
 	
+	//弹出胜利对话框
 	public void showWinDialog(){
 		//弹出个Dialog	
 		AlertDialog.Builder builder = new AlertDialog.Builder(GameBoard.this);
@@ -268,16 +292,17 @@ public class GameBoard extends Activity{
 	
 	}
 	
-	public void colorTheTable(){
-		//染色
-				Random random = new Random();
-				for(int i = 0; i < WIDTH; i++){
-					for(int j = 0; j < WIDTH; j++){
-						texts[i][j].setBackgroundColor(getResources().getColor(colors[random.nextInt(6)]));
-					}
-				}
+	//给每个小色块染色
+	public void colorTheTable(){	
+		Random random = new Random();
+		for(int i = 0; i < WIDTH; i++){
+			for(int j = 0; j < WIDTH; j++){
+				texts[i][j].setBackgroundColor(getResources().getColor(colors[random.nextInt(6)]));
+			}
+		}
 	}
 	
+	//初始化游戏面板
 	public void initTheTable(){
 		colorTheTable();
 		step = 0;
@@ -285,27 +310,27 @@ public class GameBoard extends Activity{
 	}
 	
 	public void changeColor(int currentColor){//此时currentColor为实际颜色的值
-		int lastColor = texts[0][0].getBackgroundColor();
+		int lastColor = texts[0][0].getBackgroundColor();//lastColor为左上角色块的原始颜色
+		
+		//防止用户重新点击，以及若点击同a[i][j]颜色相同的按钮时的计数错误
 		if(lastColor == currentColor)
 			return;
 		
 		step++;
-		stepText.setText("步数 " + step + "/" + (MAX));
-		
-		texts[0][0].setBackgroundColor(currentColor);
-		
+		stepText.setText("步数 " + step + "/" + (MAX));		
+		texts[0][0].setBackgroundColor(currentColor);	
 		search(0, 0, lastColor, currentColor);
-		
-		
 		
 	}
 	
+	//将颜色和a[x][y]变色之前相同的所有颜色为lastColor的相邻色块，均变色为最新的currentColor。
 	public void search(int x, int y, int color, int currentColor){
 		//up
 		if(x > 0){
+			//若上方色块同a[x][y]颜色相同，则将其变色为最新的currentColor
 			if(texts[x - 1][y].getBackgroundColor() == color){
 				texts[x - 1][y].setBackgroundColor(currentColor);
-				search(x - 1, y, color, currentColor);
+				search(x - 1, y, color, currentColor);//递归搜索
 			}
 		}
 		
@@ -334,6 +359,7 @@ public class GameBoard extends Activity{
 		}
 	}
 	
+	//检测是否所有色块颜色相同，若相同则游戏结束
 	public boolean isFinish(){
 		Log.v("the log", "...............");
 		for(int i = 0; i< WIDTH; i++){
@@ -345,9 +371,8 @@ public class GameBoard extends Activity{
 		return true;
 	}
 	
-	public void record(int step){
-		//hightscore相关
-		
+	//游戏分数记录
+	public void record(int step){	
 		if(WIDTH == EASY){
 			int recordEasy = Integer.parseInt(pre.getString("easy", "99999"));
 			if(step < recordEasy)
@@ -367,7 +392,7 @@ public class GameBoard extends Activity{
 		editor.commit();
 	}
 	
-	
+	//创建游戏色块板
 	public void createBoard(String difficulty){
 		TextView stepsText = (TextView)findViewById(R.id.step);
 		switch(Integer.parseInt(difficulty)){
@@ -385,21 +410,18 @@ public class GameBoard extends Activity{
 			break;
 		}
 		stepsText.setText("步数 0/" + MAX);
-		
-		
+				
 		//添加table，TextView[i][j]代表一个格子
 		table = (TableLayout)findViewById(R.id.tablelayout);
 		TableRow[] tableRows = new TableRow[WIDTH];
 		texts = new MyTextView[WIDTH][WIDTH];
 		int screenWidth = this.getWindowManager().getDefaultDisplay().getWidth();
-		
-		
+			
 		for(int i = 0; i < WIDTH; i++){
 			tableRows[i] = new TableRow(this);
 			table.addView(tableRows[i]);//把每一行加到表格
 			
-			//添加每一行的TextView
-			
+			//添加每一行的TextView			
 			for(int j = 0; j < WIDTH; j++){
 				texts[i][j] = new MyTextView(this);
 				texts[i][j].setWidth(screenWidth/(WIDTH + 3));
@@ -410,9 +432,7 @@ public class GameBoard extends Activity{
 	
 	}
 	
-	
-	
-	
+	//一些变量
 	TableLayout table;
 	public static String KEY_DIFFICULTY;
 	public static int WIDTH = 5;  //default

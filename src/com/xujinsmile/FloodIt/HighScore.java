@@ -44,8 +44,7 @@ public class HighScore extends Activity{
 			Log.v("pre", "null");
 		}
 			
-		else{
-			
+		else{			
 			String result = "";
 			if(pre.getString("easy", "99999") != "99999")
 				result += "\nÐ¡²ËÒ»µú    " + pre.getString("easy", "99999") + " ²½";

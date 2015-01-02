@@ -10,8 +10,8 @@
     <string name="about_text">游戏玩法：\n\n\n按下屏幕下方的颜色按钮，左上角的色块就会变成按钮颜色。我们的目标是把所有色块变成同色。\n\n什么，还不懂规则，那就直接玩游戏吧!玩两把就会了  o(∩_∩)o \n\n   还等什么，试试吧！
         \n\n\n
         Version  2.0\n
-        Author   徐进（东北大学）\n
-        GitHub   GinSmile
+        Author   徐进（neu）\n
+        GitHub   ginsmile.github.com
     </string>
     <string name="settings_title">设置</string>
     <string name="music_title">音乐</string>
@@ -21,11 +21,12 @@
     <string name="author">关于作者</string>
     
     <string name="start_title">选择难度</string>
-    <string name="easy_model">小菜一碟</string>
-    <string name="medium_model">十拿九稳</string>
-    <string name="hard_model">涉险过关</string>
+    <string name="easy_model">Ⅰ.小菜一碟</string>
+    <string name="medium_model">Ⅱ.十拿九稳</string>
+    <string name="hard_model">Ⅲ.涉险过关</string>
     <string name="no_data">暂无数据，玩一把游戏吧!</string>
     <string name="refresh">刷新</string>
+    <string name="help">？</string>
     
     <string name="back">&#8656;</string>
 

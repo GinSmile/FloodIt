@@ -68,6 +68,8 @@ public class MainActivity extends Activity implements android.view.View.OnClickL
 			case R.id.score_button:				
 				Intent intent = new Intent(this, HighScore.class);
 				startActivity(intent);
+				overridePendingTransition(R.anim.zoomin, R.anim.zoomout);
+				finish();
 				break;
 			case R.id.about_button:
 				Intent i = new Intent(this, About.class);
