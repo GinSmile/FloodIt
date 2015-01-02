@@ -10,7 +10,6 @@ flood_it
 
 效果图
 -------------------------------------------
-   ![效果图1](https://github.com/GinSmile/FloodIt/blob/master/screenshot/welcome.jpg?raw=true)
    _![效果图2](https://github.com/GinSmile/FloodIt/blob/master/screenshot/menu.jpg?raw=true)  
    
    _![效果图4](https://github.com/GinSmile/FloodIt/blob/master/screenshot/game_board.jpg?raw=true)
