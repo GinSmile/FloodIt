@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import com.xujinsmile.FloodIt.R;
 
 public class HighScore extends Activity{
 	
